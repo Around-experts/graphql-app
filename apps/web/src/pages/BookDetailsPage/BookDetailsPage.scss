@@ -1,0 +1,18 @@
+.container {
+  .book {
+    display: flex;
+    flex-direction: row;
+
+    .details {
+      margin-left: 1em;
+
+      h3 {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .bookCopies {
+    clear: both;
+  }
+}

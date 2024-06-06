@@ -1,0 +1,70 @@
+@startuml
+!define table(name) class name << (T,#FFAAAA) >>
+!define primary_key(x) <b><i>x</i></b>
+!define foreign_key(x) <i>x</i>
+!define not_null(x) <b>x</b>
+
+skinparam classFontSize 16
+skinparam classFontStyle bold
+hide class circle
+hide methods
+hide stereotypes
+
+package Users {
+  table(Avatar) {
+    not_null(imagePath)
+    not_null(color)
+  }
+
+  table(User) {
+    not_null(name)
+    info
+    not_null(email) [unique]
+    not_null(passwordHash)
+    isAdmin
+    --
+    not_null(foreign_key(avatar))
+  }
+}
+
+package Library {
+  table(Author) {
+    not_null(name)
+    not_null(bio)
+    photoPath
+  }
+
+  table(Book) {
+    not_null(title)
+    not_null(description)
+    coverPath
+    --
+    not_null(foreign_key(author))
+  }
+
+  table(BookCopy) {
+    borrowedAt
+    --
+    not_null(foreign_key(book))
+    not_null(foreign_key(owner))
+    foreign_key(borrower)
+  }
+}
+
+
+' Relations
+
+User -right-> Avatar : avatar
+Avatar -left-> User : user
+
+Book -right-> BookCopy : copies
+User --> BookCopy: ownedBooksCopies
+BookCopy --> User : owner
+User --> BookCopy: borrowedBooksCopies
+BookCopy --> User : borrower
+BookCopy --> Book : book
+
+Book -> Author : author
+Author --> Book : books
+User --> Book : favouriteBooks
+@enduml

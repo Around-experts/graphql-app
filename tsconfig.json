@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "module": "commonjs",
+    "target": "ES2017",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true, // Fixes go-to-definition in code editors
+    "strictPropertyInitialization": false,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@sandbox/*": ["./packages/*/src"]
+    }
+  }
+}

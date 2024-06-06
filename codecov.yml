@@ -1,0 +1,9 @@
+ignore:
+  - packages/server/src/**/*.generated.ts
+  - packages/web/src/**/*.generated.ts
+  - packages/web/src/**/*.generated.tsx
+coverage:
+  status:
+    project:
+      default:
+        threshold: 10 # Allow coverage to drop by x%

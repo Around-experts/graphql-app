@@ -1,0 +1,19 @@
+type Author implements Resource & Timestampable {
+  id: ExternalID!
+  name: String!
+  bio: String!
+  photo: Image!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+extend type Book {
+  author: Author!
+}
+
+union AuthorResponse = Author | ResourceNotFoundError
+
+extend type Query {
+  authors: [Author!]!
+  author(id: ExternalID!): AuthorResponse!
+}

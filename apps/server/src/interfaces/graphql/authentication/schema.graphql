@@ -1,0 +1,30 @@
+enum Role {
+  Admin
+  User
+}
+
+directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginSuccess {
+  currentUser: ProtectedUser!
+}
+
+type LoginFailure {
+  validationErrors: [ValidationError!]!
+}
+
+union LoginResult = LoginSuccess | LoginFailure
+
+extend type Mutation {
+  """
+  Authenticates a user with the given credentials.
+  """
+  login(input: LoginInput!): LoginResult!
+
+  logout: Boolean!
+}

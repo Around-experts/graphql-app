@@ -1,0 +1,11 @@
+fragment CurrentUser on ProtectedUser {
+  id
+  name
+  email
+  isAdmin
+  info
+  isAdmin
+  avatar {
+    ...Avatar
+  }
+}

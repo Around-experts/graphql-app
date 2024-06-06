@@ -1,0 +1,14 @@
+{
+  "name": "@bookshelf/string-utils",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "private": true,
+  "scripts": {
+    "clean": "yarn rimraf covarage dist *.tsbuildinfo",
+    "typecheck": "yarn tsc --noEmit",
+    "build": "yarn tsc --build",
+    "lint": "yarn eslint . --ext .ts",
+    "test": "yarn jest"
+  }
+}

@@ -1,0 +1,6 @@
+.yarn
+apps/web/build
+apps/web/storybook-static
+coverage
+node_modules
+dist

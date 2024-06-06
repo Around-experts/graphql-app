@@ -1,0 +1,14 @@
+{
+  "name": "@bookshelf/secure-id",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "private": true,
+  "scripts": {
+    "clean": "yarn rimraf covarage dist tsconfig.tsbuildinfo",
+    "build": "yarn tsc --build tsconfig.json",
+    "typecheck": "yarn tsc --noEmit",
+    "lint": "yarn eslint . --ext .ts",
+    "test": "yarn jest"
+  }
+}

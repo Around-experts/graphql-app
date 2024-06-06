@@ -1,0 +1,11 @@
+fragment UserCard on User {
+  name
+  avatar {
+    ...Avatar
+  }
+
+  ... on ProtectedUser {
+    email
+    isAdmin
+  }
+}

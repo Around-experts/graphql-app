@@ -1,0 +1,13 @@
+.info {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+
+  img {
+    align-self: start;
+  }
+
+  article {
+    margin-left: 1em;
+  }
+}

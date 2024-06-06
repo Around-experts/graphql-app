@@ -1,0 +1,18 @@
+mutation Login($input: LoginInput!) {
+  login(input: $input) {
+    __typename
+
+    ... on LoginSuccess {
+      currentUser {
+        ...CurrentUser
+      }
+    }
+
+    ... on LoginFailure {
+      validationErrors {
+        path
+        message
+      }
+    }
+  }
+}

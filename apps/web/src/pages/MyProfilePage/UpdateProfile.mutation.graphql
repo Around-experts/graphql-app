@@ -1,0 +1,16 @@
+mutation UpdateProfile($input: UpdateProfileInput!) {
+  updateProfile(input: $input) {
+    __typename
+
+    ... on ProtectedUser {
+      ...CurrentUser
+    }
+
+    ... on ValidationErrors {
+      errors {
+        path
+        message
+      }
+    }
+  }
+}

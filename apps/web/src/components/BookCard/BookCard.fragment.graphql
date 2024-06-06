@@ -1,0 +1,19 @@
+fragment BookCard on Book {
+  id
+  title
+  isFavourite
+
+  averageRating
+  reviewsCount
+
+  ...FavouriteBookButton
+
+  cover {
+    path
+  }
+
+  author {
+    id
+    name
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["./src/**/*.json", "./src/**/*.ts"],
+  "exclude": ["./src/**/*.test.ts"],
+  "references": [
+    { "path": "../../libs/secure-id" },
+    { "path": "../../libs/string-utils" }
+  ]
+}

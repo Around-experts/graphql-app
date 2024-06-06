@@ -1,0 +1,29 @@
+input RegistrationInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+union RegistrationResult = ProtectedUser | ValidationErrors
+
+input UpdateProfileInput {
+  name: String!
+  email: String!
+  info: String!
+}
+
+union UpdateProfileResult = ProtectedUser | ValidationErrors
+
+extend type Query {
+  """
+  Returns the currently logged in user.
+  """
+  currentUser: ProtectedUser
+}
+
+extend type Mutation {
+  register(input: RegistrationInput!): RegistrationResult!
+
+  updateProfile(input: UpdateProfileInput!): UpdateProfileResult!
+    @requireAuthorization
+}

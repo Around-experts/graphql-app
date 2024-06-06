@@ -1,0 +1,63 @@
+type Book implements Resource & Timestampable {
+  id: ExternalID!
+  title: String!
+  description: String!
+  cover: Image!
+  copies: [BookCopy!]!
+  isFavourite: Boolean
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+extend type Author {
+  books: [Book!]!
+}
+
+type BookCopy implements Timestampable {
+  id: ExternalID!
+  book: Book!
+  borrowedAt: ISODateString
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+extend interface User {
+  ownedBookCopies: [BookCopy!]!
+}
+
+extend type PublicUser {
+  ownedBookCopies: [BookCopy!]!
+}
+
+extend type ProtectedUser {
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
+  favouriteBooks: [Book!]!
+}
+
+union UpdateBookFavouriteResult = Book | MutationError
+
+union BorrowBookCopyResult = BookCopy | MutationError
+
+union ReturnBookCopyResult = BookCopy | MutationError
+
+union BookResult = Book | ResourceNotFoundError
+
+extend type Query {
+  booksCount: Int!
+  books(offset: Int = 0, limit: Int = 9): [Book!]!
+  book(id: ExternalID!): BookResult!
+  randomBook: Book
+}
+
+extend type Mutation {
+  addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
+  removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
+
+  borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
+  returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
+}
+
+extend type Subscription {
+  bookCopyUpdated(id: ExternalID!): BookCopy!
+}

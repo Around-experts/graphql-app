@@ -1,0 +1,19 @@
+{
+  "name": "@bookshelf/web-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@testing-library/cypress": "7.0.1",
+    "@types/testing-library__cypress": "5.0.8",
+    "cypress": "5.5.0",
+    "eslint-plugin-cypress": "2.11.2",
+    "graphql": "16.6.0",
+    "graphql-tag": "2.12.6"
+  },
+  "scripts": {
+    "clean": "yarn rimraf dist",
+    "typecheck": "yarn tsc --noEmit",
+    "build": "yarn clean && yarn tsc",
+    "lint": "yarn eslint . --ext .ts"
+  }
+}

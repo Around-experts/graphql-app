@@ -1,0 +1,25 @@
+query GetUser($id: ExternalID!) {
+  user(id: $id) {
+    __typename
+
+    ... on ResourceNotFoundError {
+      message
+    }
+
+    ... on User {
+      id
+      info
+      ownedBookCopies {
+        ...BookCopyCard
+      }
+
+      ...UserCard
+
+      ... on ProtectedUser {
+        borrowedBookCopies {
+          ...BookCopyCard
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+query GetBook($id: ExternalID!) {
+  book(id: $id) {
+    __typename
+
+    ... on ResourceNotFoundError {
+      message
+    }
+
+    ... on Book {
+      __typename
+      id
+
+      title
+      description
+
+      ...FavouriteBookButton
+
+      author {
+        id
+        name
+      }
+
+      cover {
+        path
+      }
+
+      copies {
+        ...BookCopyCard
+      }
+
+      reviews {
+        ...Review
+      }
+    }
+  }
+}

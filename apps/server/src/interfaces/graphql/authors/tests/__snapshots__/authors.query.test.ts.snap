@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authors query 1`] = `
+{
+  "authors": [
+    {
+      "books": [
+        {
+          "description": "Natus aliquam iste rem.",
+          "id": "Mi1Cb29r",
+          "title": "Dolorem Alias Qui Asperiores",
+        },
+        {
+          "description": "Ipsa reiciendis nam.",
+          "id": "MS1Cb29r",
+          "title": "Fugit Facilis Mollitia",
+        },
+        {
+          "description": "Iste aliquid odit aperiam dolore voluptatibus nemo.",
+          "id": "My1Cb29r",
+          "title": "Sit Dolore",
+        },
+      ],
+      "id": "MS1BdXRob3I=",
+      "name": "Miss Sadie Deckow-Reynolds",
+    },
+    {
+      "books": [
+        {
+          "description": "Tenetur hic delectus.",
+          "id": "NC1Cb29r",
+          "title": "Dolores In Quae",
+        },
+        {
+          "description": "Fuga adipisci reprehenderit fuga.",
+          "id": "NS1Cb29r",
+          "title": "Laboriosam Aliquam Aut Quasi",
+        },
+      ],
+      "id": "Mi1BdXRob3I=",
+      "name": "Catherine Mosciski",
+    },
+  ],
+}
+`;

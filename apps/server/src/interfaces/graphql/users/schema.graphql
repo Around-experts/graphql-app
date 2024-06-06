@@ -1,0 +1,105 @@
+interface User implements Resource & Timestampable {
+  id: ExternalID!
+
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+type PublicUser implements User & Resource & Timestampable {
+  id: ExternalID!
+
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+type ProtectedUser implements User & Resource & Timestampable {
+  id: ExternalID!
+
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+
+  email: String!
+  isAdmin: Boolean!
+}
+
+type Avatar {
+  image: Image!
+  color: String!
+}
+
+extend type BookCopy {
+  owner: User!
+  borrower: User
+}
+
+type FlaggedAvatarError implements Error {
+  message: String!
+}
+
+union AvatarResult = Avatar | FlaggedAvatarError
+
+input AvatarInput {
+  imagePath: String!
+  color: String!
+}
+
+input CreateUserInput {
+  name: String!
+  info: String!
+  email: String!
+  password: String!
+  avatar: AvatarInput!
+}
+
+input UpdateUserInput {
+  id: ExternalID!
+  name: String!
+  email: String!
+  info: String!
+}
+
+type CreateUserResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+
+type DeleteUserResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+}
+
+union UserResult = PublicUser | ProtectedUser | ResourceNotFoundError
+
+extend type Query {
+  users: [User!]!
+  user(id: ExternalID!): UserResult!
+}
+
+union UpdateUserResult =
+    ProtectedUser
+  | ResourceNotFoundError
+  | ValidationErrors
+
+extend type Mutation {
+  createUser(input: CreateUserInput!): CreateUserResult!
+    @requireAuthorization(role: Admin)
+
+  updateUser(input: UpdateUserInput!): UpdateUserResult!
+    @requireAuthorization(role: Admin)
+
+  deleteUser(id: ExternalID!): DeleteUserResult!
+    @requireAuthorization(role: Admin)
+}

@@ -1,0 +1,14 @@
+query GetMyBookCopies {
+  currentUser {
+    __typename
+    id
+
+    ownedBookCopies {
+      ...BookCopyCard
+    }
+
+    borrowedBookCopies {
+      ...BookCopyCard
+    }
+  }
+}
